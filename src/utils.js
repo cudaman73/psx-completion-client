@@ -21,15 +21,12 @@ async function setNewGameAsCurrent(newGame) {
 };
 
 
-async function completeGame(currentGame, newGame) {
-    console.log(currentGame);
-    setNewGameAsCurrent(newGame);
-
+async function completeGame(currentGame) {
     //Don't want to complete 'None'
     if (currentGame.name == "None") {
         return null;
     } else {
-        
+
         const response = await fetch("/complete", {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
