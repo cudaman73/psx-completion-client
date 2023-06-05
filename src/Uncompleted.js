@@ -13,13 +13,18 @@ function Uncompleted() {
     }, [])
 
     return(
-            <div class="row mt-3">
+        <div>
+            <div className="row">
+                <h1>Uncompleted Games</h1>
+            </div>
+            <div className="row mt-3 mx-1">
                 {gameList.map((game) => (
-                    <div className="col-md-4 mx-auto" key={game.id}>
+                    <div className="col-md-4" key={game.id}>
                         <Card name={game.name} completed={game.completed} url={game.url}/>
                     </div>
                 ))}
             </div>
+        </div>
     )
 }
 

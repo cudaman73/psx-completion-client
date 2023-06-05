@@ -37,4 +37,4 @@ async function completeGame(currentGame) {
     }
 };
 
-export {getUncompletedGames, completeGame, getCompletedGames};
+export {getUncompletedGames, completeGame, getCompletedGames, setNewGameAsCurrent};
