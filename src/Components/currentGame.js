@@ -3,13 +3,18 @@ import { getUncompletedGames, completeGame, setNewGameAsCurrent } from "../utils
 import Card from "./Card";
 import { Modal, Button } from 'react-bootstrap';
 
-
 function currentGame() {
+        const noneGame = {
+          _id: '0',
+          name: "None",
+          completed: false,
+          url: "/default-image.svg"
+        }
         const [currentGame, setCurrentGame] = useState({
-            _id: '0',
-            name: "None",
-            completed: false,
-            url: "/default-image.svg"
+          _id: '0',
+          name: "None",
+          completed: false,
+          url: "/default-image.svg"
         });
         const [disabled, setDisable] = useState(false);
         const [showModal, setShowModal] = useState(false);  
@@ -31,12 +36,8 @@ function currentGame() {
         }
 
         function resetCurrentGame() {
-          setCurrentGame({
-            _id: '0',
-            name: "None",
-            completed: false,
-            url: "/default-image.svg"
-        })
+          setCurrentGame(noneGame);
+          setNewGameAsCurrent(noneGame);
         }
 
         // make api call to node to grab current game from db.
@@ -57,7 +58,7 @@ function currentGame() {
                   <h1>Current game: </h1>
                   <Card key={currentGame._id} name={currentGame.name} url={currentGame.url} />
                   <Button className="mx-2" variant="warning" onClick={resetCurrentGame}>Clear Game</Button>
-                  <Button className="mx-2" variant="success" disabled={disabled} onClick={currentGame.name == "None" ? grabNewGame : handleShow}>Complete!</Button>
+                  <Button className="mx-2" variant="success" disabled={disabled} onClick={currentGame.name === "None" ? grabNewGame : handleShow}>Complete!</Button>
         
                   <Modal show={showModal} onHide={handleClose}>
                       <Modal.Header closeButton>

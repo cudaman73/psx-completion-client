@@ -13,13 +13,18 @@ function Completed() {
     }, [])
 
     return(
-        <div class="row">
+        <div>
+            <div className="row">
+                <h1>Completed Games</h1>
+            </div>
+            <div className="row mt-3 mx-1">
                 {gameList.map((game) => (
                     <div className="col-md-4" key={game.id}>
-                        <Card name={game.name} completed={game.completed} />
+                        <Card name={game.name} completed={game.completed} url={game.url}/>
                     </div>
                 ))}
             </div>
+        </div>
     )
 }
 

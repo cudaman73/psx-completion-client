@@ -23,7 +23,7 @@ async function setNewGameAsCurrent(newGame) {
 
 async function completeGame(currentGame) {
     //Don't want to complete 'None'
-    if (currentGame.name == "None") {
+    if (currentGame.name === "None") {
         return null;
     } else {
 
