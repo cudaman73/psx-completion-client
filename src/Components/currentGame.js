@@ -5,7 +5,6 @@ import { Modal, Button } from 'react-bootstrap';
 
 
 function currentGame() {
-
         const [currentGame, setCurrentGame] = useState({
             _id: '0',
             name: "None",
@@ -13,7 +12,6 @@ function currentGame() {
             url: "/default-image.svg"
         });
         const [disabled, setDisable] = useState(false);
-        // Add a state to control the visibility of the modal
         const [showModal, setShowModal] = useState(false);  
 
         const handleClose = () => setShowModal(false);
@@ -22,7 +20,6 @@ function currentGame() {
         function grabNewGame() {
             setDisable(true);
             setShowModal(false);
-
             getUncompletedGames().then((data) => {
                 let randIndex = Math.ceil(Math.random() * data.length);
                 let newGame = data[randIndex]
@@ -32,6 +29,14 @@ function currentGame() {
             });
         }
 
+        function resetCurrentGame() {
+          setCurrentGame({
+            _id: '0',
+            name: "None",
+            completed: false,
+            url: "/default-image.svg"
+        })
+        }
 
         // make api call to node to grab current game from db.
         // this should always be the first result
@@ -50,7 +55,8 @@ function currentGame() {
               <div className="col-md-4 mx-auto">
                   <h1>Current game: </h1>
                   <Card key={currentGame._id} name={currentGame.name} url={currentGame.url} />
-                  <Button variant="success" disabled={disabled} onClick={handleShow}>Complete!</Button>
+                  <Button className="mx-2" variant="warning" onClick={resetCurrentGame}>Clear Game</Button>
+                  <Button className="mx-2" variant="success" disabled={disabled} onClick={currentGame.name == "None" ? grabNewGame : handleShow}>Complete!</Button>
         
                   <Modal show={showModal} onHide={handleClose}>
                       <Modal.Header closeButton>

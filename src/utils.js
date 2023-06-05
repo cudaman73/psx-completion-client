@@ -25,13 +25,19 @@ async function completeGame(currentGame, newGame) {
     console.log(currentGame);
     setNewGameAsCurrent(newGame);
 
-    const response = await fetch("/complete", {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({"name": currentGame.name})
-    }).then((response) => response.json());
+    //Don't want to complete 'None'
+    if (currentGame.name == "None") {
+        return null;
+    } else {
+        
+        const response = await fetch("/complete", {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({"name": currentGame.name})
+        }).then((response) => response.json());
 
-    return response;
+        return response;
+    }
 };
 
 export {getUncompletedGames, completeGame, getCompletedGames};
