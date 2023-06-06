@@ -1,5 +1,6 @@
 import React from "react";
 import {Button} from "react-bootstrap";
+import { toggleGameCompletion } from "../utils";
 
 function Card(props) {
     return (
