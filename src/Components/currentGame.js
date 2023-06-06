@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { getUncompletedGames, completeGame, setNewGameAsCurrent } from "../utils";
+import { getUncompletedGames, toggleGameCompletion, setNewGameAsCurrent } from "../utils";
 import Card from "./Card";
 import { Modal, Button } from 'react-bootstrap';
 
@@ -28,7 +28,7 @@ function currentGame() {
             getUncompletedGames().then((data) => {
                 let randIndex = Math.ceil(Math.random() * data.length);
                 let newGame = data[randIndex]
-                completeGame(currentGame, newGame);
+                toggleGameCompletion(currentGame.name, true);
                 setNewGameAsCurrent(newGame);
                 setCurrentGame(newGame);
                 setDisable(false);
