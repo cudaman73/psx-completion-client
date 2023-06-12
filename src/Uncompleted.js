@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Components/Card";
-import { getUncompletedGames } from "./utils";
+import { getUncompletedGames, toggleGameCompletion } from "./utils";
 
 function Uncompleted() {
 
@@ -12,6 +12,15 @@ function Uncompleted() {
         });
     }, [])
 
+    function completeGame(currentGame) {
+        console.log("gameList length is " + gameList.length);
+        toggleGameCompletion(currentGame, true).then(() => {
+            const newGameList = gameList.filter(game => game.name !== currentGame);
+            console.log("newGameList length is " + newGameList.length);
+            setGameList(newGameList);
+            });
+    }
+
     return(
         <div>
             <div className="row">
@@ -20,7 +29,7 @@ function Uncompleted() {
             <div className="row mt-3 mx-1">
                 {gameList.map((game) => (
                     <div className="col-md-4" key={game.id}>
-                        <Card name={game.name} completed={game.completed} url={game.url}/>
+                        <Card name={game.name} completed={game.completed} url={game.url} toggle={completeGame}/>
                     </div>
                 ))}
             </div>

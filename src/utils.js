@@ -26,13 +26,13 @@ async function toggleGameCompletion(game, completed) {
     if (game.name === "None") {
         return null;
     } else {
-
+        console.log("Toggling completion of " + game);
         const response = await fetch("/complete", {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({"name": game, "completed": completed})
         }).then((response) => response.json());
-
+        console.log(response);
         return response;
     }
 };

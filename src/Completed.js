@@ -12,14 +12,14 @@ function Completed() {
         });
     }, [])
 
-    // function uncompleteGame(game) {
-    //     console.log("gameList length is " + gameList.length);
-    //     toggleGameCompletion(game, false).then(() => {
-    //         const newGameList = gameList.filter(game => game.name !== game);
-    //         console.log("newGameList length is " + newGameList.length);
-    //         this.setGameList(newGameList);
-    //         })
-    // }
+    function uncompleteGame(currentGame) {
+        console.log("gameList length is " + gameList.length);
+        toggleGameCompletion(currentGame, false).then(() => {
+            const newGameList = gameList.filter(game => game.name !== currentGame);
+            console.log("newGameList length is " + newGameList.length);
+            setGameList(newGameList);
+            });
+    }
 
     return(
         <div>
@@ -29,7 +29,7 @@ function Completed() {
             <div className="row mt-3 mx-1">
                 {gameList.map((game) => (
                     <div className="col-md-4" key={game.id}>
-                        <Card name={game.name} completed={game.completed} url={game.url} />
+                        <Card name={game.name} completed={game.completed} url={game.url} toggle={uncompleteGame}/>
                     </div>
                 ))}
             </div>
