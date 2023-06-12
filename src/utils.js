@@ -27,7 +27,7 @@ async function toggleGameCompletion(game, completed) {
         return null;
     } else {
         console.log("Toggling completion of " + game);
-        const response = await fetch("/complete", {
+        const response = await fetch("/toggle-completion", {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({"name": game, "completed": completed})
