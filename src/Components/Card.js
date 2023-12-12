@@ -9,7 +9,7 @@ function Card(props) {
 
 
     return (
-        <div className="card text-bg-primary mb-3">
+        <div className="card text-bg-primary mb-3" >
             <h5 className="card-header">{props.name}</h5>
             <img loading="lazy" src={props.url} className="card-img-top py-2 px-2" alt="game cover thumbnail" />
             <div className="card-body">

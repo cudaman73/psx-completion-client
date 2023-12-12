@@ -28,7 +28,7 @@ function Uncompleted() {
             </div>
             <div className="row mt-3 mx-1">
                 {gameList.map((game) => (
-                    <div className="col-md-4" key={game.id}>
+                    <div className="col-md-3" key={game.id}>
                         <Card name={game.name} completed={game.completed} url={game.url} toggle={completeGame}/>
                     </div>
                 ))}
