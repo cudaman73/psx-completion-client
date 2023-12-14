@@ -8,31 +8,31 @@ import Uncompleted from "./Uncompleted";
 import Login from "./Login";
 import Register from "./Register";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import RequireAuth from "./Components/requireAuth";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 function App() {
 
   return (
     <div className="App">
-    <Router>
-    <Navbar />
-    <Routes>
-      <Route exact path="/" element={
-        <RequireAuth>
-          <Home/>
-        </RequireAuth>} />
-      <Route exact path="/completed" element={<RequireAuth>
-        <Completed/>
-      </RequireAuth>} />
-      <Route exact path="/uncompleted" element={
-        <RequireAuth>
-          <Uncompleted/>
-        </RequireAuth>
-      } />
-      <Route exact path="/login" element={<Login/>} />
-      <Route exact path="/register" element={<Register/>} />
-    </Routes>
-    </Router>
+      <Router>
+      <Navbar />
+      <Routes>
+        <Route exact path="/" element={
+          <ProtectedRoute>
+            <Home/>
+          </ProtectedRoute>} />
+        <Route exact path="/completed" element={<ProtectedRoute>
+          <Completed/>
+        </ProtectedRoute>} />
+        <Route exact path="/uncompleted" element={
+          <ProtectedRoute>
+            <Uncompleted/>
+          </ProtectedRoute>
+        } />
+        <Route exact path="/login" element={<Login/>} />
+        <Route exact path="/register" element={<Register/>} />
+      </Routes>
+      </Router>
     </div>
   );
 }

@@ -1,5 +1,6 @@
-import React, { useState } from "react"; 
+import React, { useState, useContext } from "react"; 
 import { useNavigate } from "react-router-dom";
+import  AuthContext  from './AuthContext';
 
 function Login() {
 
@@ -7,6 +8,7 @@ function Login() {
   const [error, setError] = useState(null);
   const [username, setUsername] = useState(''); 
   const [password, setPassword] = useState('');
+  const { login } = useContext(AuthContext);
 
 // Update on change
 const handleChange = (e) => {
@@ -22,15 +24,7 @@ const handleChange = (e) => {
 
 
     try {
-      const loginData = {username, password};
-
-      const response = await fetch('/login', {
-        method: 'POST', 
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(loginData)  
-      });
+      const response = await login(username, password);
       
       if(!response.ok) {
         throw new Error('Invalid login credentials');

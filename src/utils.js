@@ -38,22 +38,4 @@ async function toggleGameCompletion(game, completed) {
 };
 
 
-async function validateSession() {
-
-    try {
-      let response = await fetch('/session');
-        console.log(response.status)
-      if(response.status === 200) {
-        return true;
-      } else {
-        return false; 
-      }
-  
-    } catch(err) {
-        console.log(err)
-        return false;
-    }
-  
-  }
-
-export {getUncompletedGames, toggleGameCompletion, getCompletedGames, setNewGameAsCurrent, validateSession};
+export {getUncompletedGames, toggleGameCompletion, getCompletedGames, setNewGameAsCurrent};
