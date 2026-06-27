@@ -1,38 +1,32 @@
-import React, { useState, useContext } from "react"; 
-import { useNavigate } from "react-router-dom";
-import  AuthContext  from './AuthContext';
+import React, { useState, useContext } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import AuthContext from './AuthContext';
 
 function Login() {
-
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const [username, setUsername] = useState(''); 
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useContext(AuthContext);
 
-// Update on change
-const handleChange = (e) => {
+  const handleChange = (e) => {
     if (e.target.id === 'user-email') {
       setUsername(e.target.value);
-    } else if (e.target.id === 'user-password') {  
+    } else if (e.target.id === 'user-password') {
       setPassword(e.target.value);
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-
     try {
       const response = await login(username, password);
-      
-      if(!response.ok) {
+      if (!response.ok) {
         throw new Error('Invalid login credentials');
       }
-
       navigate('/');
     } catch (err) {
-      setError('Invalid email address or password')  
+      setError('Invalid email address or password');
     }
   };
 
@@ -43,19 +37,22 @@ const handleChange = (e) => {
       </div>
       <div className="row col-md-4 mx-auto">
         <form onSubmit={handleSubmit}>
-          {error && <div>{error}</div>}
+          {error && <div className="text-danger mb-2">{error}</div>}
           <div className="mb-3">
             <label htmlFor="user-email" className="form-label">Email address</label>
-            <input type="email" className="form-control" id="user-email" onChange={handleChange}/>
+            <input type="email" className="form-control" id="user-email" onChange={handleChange} />
           </div>
           <div className="mb-3">
             <label htmlFor="user-password" className="form-label">Password</label>
-            <input type="password" className="form-control" id="user-password" onChange={handleChange}/>
+            <input type="password" className="form-control" id="user-password" onChange={handleChange} />
           </div>
           <button name="login" type="submit" className="btn btn-secondary">
             Login
           </button>
         </form>
+        <p className="mt-3">
+          Don't have an account? <Link to="/register">Sign up</Link>
+        </p>
       </div>
     </>
   );
