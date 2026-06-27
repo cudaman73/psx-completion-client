@@ -17,7 +17,7 @@ React single-page app for browsing and updating completion status across a ~1,40
 
 ![Uncompleted games with box art](screenshots/uncompleted.png)
 
-![Current game](screenshots/current.png)
+![Current game](screenshots/currentgame.png)
 
 ## Architecture
 
